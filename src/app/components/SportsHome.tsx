@@ -13,13 +13,13 @@ const SportsHome = () => {
       <div className="sports-content order-1 md:order-2">
         <div className="flex items-center justify-between mb-6">
           <Link 
-            href="/sports" 
+            href="/sports-marketing" 
             className="text-2xl font-bold text-[#28282B] hover:text-[#34A56F] transition-colors"
           >
             Sports Marketing
           </Link>
           <Link 
-            href="/sports"
+            href="/sports-marketing"
             className="px-4 py-2 text-sm font-semibold text-[#34A56F] border border-[#34A56F] rounded-full hover:bg-[#34A56F] hover:text-white transition-colors"
           >
             Learn More

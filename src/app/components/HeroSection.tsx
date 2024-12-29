@@ -1,27 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
 import { gsap } from 'gsap';
+import Link from 'next/link';
 
 const slides = [
   {
     id: 1,
-    image: '/awards.JPG',
+    image: '/statefarm.jpg',
     title: 'Mustard Seed Marketing',
     buttonText: 'Get Started',
+    buttonLink: '/get-started',
   },
   {
     id: 2,
     image: '/statefarm.jpg',
-    title: 'Marketing your sporting events with Mustard Seed',
+    title: 'Elevate Your Game: Mustard Seed Sports Marketing',
     buttonText: 'Learn More',
+    buttonLink: '/sports-marketing',
   },
   {
     id: 3,
     image: '/brandstuff.jpg',
     title: 'Build your brand',
     description:
-      "Amplify your brand's impact with our professional Brand Ambassador services. Let us bring your brand to life and create meaningful customer experiences.",
+      "Brand Ambassadors who deliver. Increase brand engagement and drive sales with our proven program.",
     buttonText: 'Start Now',
+    buttonLink: '/brand-development',
   },
   {
     id: 4,
@@ -54,7 +58,6 @@ const HeroSection = () => {
     setCurrentSlide(index);
   };
   
-
   useEffect(() => {
     const tl = gsap.timeline({
       onStart: () => {
@@ -107,14 +110,15 @@ const HeroSection = () => {
               >
                 <div className="absolute inset-0">
                   {slide.type === 'grid' ? (
-                    <div className="grid grid-cols-2 gap-1 h-full">
+                    <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
                       {slide.images?.map((image, i) => (
-                        <img
-                          key={i}
-                          src={image}
-                          alt={`Event ${i + 1}`}
-                          className="w-full h-full object-cover"
-                        />
+                        <div key={i} className="relative w-full h-full">
+                          <img
+                            src={image}
+                            alt={`Event ${i + 1}`}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        </div>
                       ))}
                     </div>
                   ) : (
@@ -150,14 +154,17 @@ const HeroSection = () => {
                           placeholder="Enter your email"
                           className="flex-1 px-4 md:px-6 py-3 md:py-4 rounded-full text-base md:text-lg"
                         />
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold transition-colors">
+                        <button className="bg-[#34A56F] hover:bg-[#2A8B5D] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold transition-colors">
                           Get Access
                         </button>
                       </div>
                     ) : slide.buttonText && (
-                      <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold transition-colors w-fit">
+                      <Link 
+                        href={slide.buttonLink} 
+                        className="bg-[#34A56F] hover:bg-[#2A8B5D] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold transition-colors w-fit"
+                      >
                         {slide.buttonText}
-                      </button>
+                      </Link>
                     )}
                   </div>
                 </div>

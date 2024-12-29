@@ -1,84 +1,57 @@
-'use client'
+'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
 
-const Header = dynamic(() => import('./components/Header'), {
+const Header = dynamic(() => import('@/app/components/Header'), {
+  ssr: false,
+  loading: () => <div className="min-h-[80px] bg-white flex items-center justify-center animate-pulse" />
+});
+
+const HeroSection = dynamic(() => import('@/app/components/HeroSection'), {
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-white animate-pulse flex items-center justify-center" />
+});
+
+const Clients = dynamic(() => import('@/app/components/Clients'), {
+  ssr: false,
+  loading: () => <div className="py-24 bg-white animate-pulse flex items-center justify-center" />
+});
+
+const Marketing = dynamic(() => import('@/app/components/Marketing'), {
+  ssr: false,
+  loading: () => <div className="py-24 bg-white animate-pulse flex items-center justify-center" />
+});
+
+const CallToActionHome = dynamic(() => import('@/app/components/CallToActionHome'), {
+  ssr: false,
+  loading: () => <div className="py-24 bg-black animate-pulse flex items-center justify-center" />
+});
+
+const Footer = dynamic(() => import('@/app/components/Footer'), {
+  ssr: false,
+  loading: () => <div className="py-12 bg-gray-200 animate-pulse flex items-center justify-center" />
+});
+
+const Contact = dynamic(() => import('@/app/components/Contact'), {
   ssr: false
 });
 
-const HeroSection = dynamic(() => import('./components/HeroSection'), {
-  ssr: false,
-  loading: () => (
-    <div className="min-h-screen bg-white animate-pulse">
-      <div className="h-screen flex items-center justify-center">
-        <div className="text-[#28282B] text-xl">Loading...</div>
-      </div>
-    </div>
-  ),
-});
-
-const Clients = dynamic(() => import('./components/Clients'), {
-  ssr: false,
-  loading: () => (
-    <div className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="h-40 flex items-center justify-center animate-pulse">
-          <div className="text-[#28282B] text-xl">Loading...</div>
-        </div>
-      </div>
-    </div>
-  ),
-});
-
-const Marketing = dynamic(() => import('./components/Marketing'), {
-  ssr: false,
-  loading: () => (
-    <div className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="h-[600px] flex items-center justify-center animate-pulse">
-          <div className="text-[#28282B] text-xl">Loading...</div>
-        </div>
-      </div>
-    </div>
-  ),
-});
-
-const CallToActionHome = dynamic(() => import('./components/CallToActionHome'), {
-  ssr: false,
-  loading: () => (
-    <div className="py-24 bg-black">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="h-[500px] flex items-center justify-center animate-pulse">
-          <div className="text-white text-xl">Loading...</div>
-        </div>
-      </div>
-    </div>
-  ),
-});
-
-const Footer = dynamic(() => import('./components/Footer'), {
-  ssr: false,
-  loading: () => (
-    <div className="py-12 bg-gray-200">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="h-32 flex items-center justify-center animate-pulse">
-          <div className="text-gray-600 text-xl">Loading...</div>
-        </div>
-      </div>
-    </div>
-  ),
-});
-
 export default function Home() {
+  // Explicitly type the ref as HTMLDivElement with non-null assertion
+  const marketingRef = useRef<HTMLDivElement>(null);
+
   return (
     <main className="relative">
       <Header />
       <HeroSection />
       <Clients />
-      <Marketing />
+      <div ref={marketingRef} id="marketing-section">
+        <Marketing />
+      </div>
       <CallToActionHome />
       <Footer />
+      <Contact targetRef={marketingRef} />
     </main>
   );
 }

@@ -51,7 +51,8 @@ const Marketing = () => {
         <div className="space-y-32">
           {/* Each component wrapped in a div for individual section animations */}
           <div className="marketing-section">
-            <CorporateHome />
+          <BrandHome />
+            
           </div>
           <div className="marketing-section">
             <SportsHome />
@@ -60,7 +61,7 @@ const Marketing = () => {
             <FieldHome />
           </div>
           <div className="marketing-section">
-            <BrandHome />
+          <CorporateHome />
           </div>
         </div>
       </div>

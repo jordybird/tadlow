@@ -83,8 +83,8 @@ const Footer = () => {
               <Image 
                 src="/instagram.svg" 
                 alt="Instagram" 
-                width={24} 
-                height={24} 
+                width={23} 
+                height={23} 
                 className="grayscale hover:grayscale-0 transition-all"
               />
             </a>
@@ -125,8 +125,8 @@ const Footer = () => {
               <Image 
                 src="/facebook.svg" 
                 alt="Facebook" 
-                width={32} 
-                height={32} 
+                width={30} 
+                height={30} 
                 className="grayscale hover:grayscale-0 transition-all"
               />
             </a>

@@ -41,13 +41,13 @@ const CallToActionHome = () => {
           {/* Image Section */}
           <div className="w-full md:w-1/2 flex justify-center">
             <div className="relative w-full max-w-md">
-              {/* Black background block - no rotation */}
-              <div className="absolute -inset-4 bg-black rounded-lg" />
-              {/* Main image - with subtle 2 degree rotation */}
+              {/* Black background block */}
+              <div className="absolute -inset-x-4 -inset-y-8 bg-black rounded-lg" />
+              {/* Main image - removed rotation */}
               <img 
-                src="/tad.png"
+                src="/team.JPG"
                 alt="Brand Elevation"
-                className="relative w-[90%] mx-auto rounded-lg shadow-2xl transform rotate-[1deg]"
+                className="relative w-[90%] mx-auto rounded-lg shadow-2xl"
               />
             </div>
           </div>
@@ -55,17 +55,17 @@ const CallToActionHome = () => {
           {/* Content Section */}
           <div ref={contentRef} className="w-full md:w-1/2 text-white md:-mt-4">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Sign up and elevate your brand today
+              About Mustard Seed
             </h2>
             <p className="text-xl md:text-2xl mb-8 text-white/90">
-              Join thousands of successful businesses who have transformed their digital presence with our proven marketing strategies and expert guidance.
+            Mustard Seed creates unforgettable experiences through innovative brand activations, dynamic sports marketing, and expertly crafted events. We partner with clients to achieve big results, connecting their brands to audiences in meaningful ways.
             </p>
             <Link 
-              href="/get-started"
+              href="/about"
               className="inline-block bg-black text-white px-8 py-4 rounded-full text-lg font-semibold 
                 hover:bg-black/80 transition-colors shadow-lg"
             >
-              Get Started
+              Learn More
             </Link>
           </div>
         </div>

@@ -12,10 +12,10 @@ export default function BrandGuidelines() {
         {/* Content on the right */}
         <div className="md:col-span-7">
           <h2 className="text-3xl font-bold text-[#28282B] mb-4">
-            Brand Guidelines Creation
+            Brand experience design
           </h2>
           <p className="text-lg text-[#28282B]/80 max-w-3xl">
-            Think of these as your brand's rulebook for consistently using all of the amazing design and messaging elements we're creating together. We'll develop a comprehensive guide that keeps your brand identity cohesive across all platforms, from your website to social media. Consider it your secret to keeping everything on-brand.
+            It's about more than just looking good – it's about feeling good, too. We will carefully craft the customer experience from initial contact to long-term loyalty. Let's design experiences that create lasting, positive memories, turning your customers into loyal brand advocates.
           </p>
         </div>
       </div>

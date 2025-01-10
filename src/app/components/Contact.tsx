@@ -80,7 +80,7 @@ const Contact = ({ targetRef }: ContactProps) => {
               &times;
             </button>
             <InlineWidget
-              url="https://calendly.com/jordann-coxx8/30-minute-meeting"
+              url="https://calendly.com/tad-themustardseedmarketinggroup"
               styles={{ height: '600px' }}
             />
           </div>

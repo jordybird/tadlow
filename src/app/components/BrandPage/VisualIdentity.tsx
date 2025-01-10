@@ -15,9 +15,7 @@ export default function VisualIdentity() {
             Visual Identity Development
           </h2>
           <p className="text-lg text-[#28282B]/80 max-w-3xl">
-            Create a distinctive visual language that captures your brand's essence. From logos and 
-            color palettes to typography and imagery, we craft cohesive visual systems that make 
-            your brand instantly recognizable.
+            It's time to craft a look that captures the essence of your brand. We'll create everything from a logo that leaves a lasting impression to a cohesive visual language that will instantly be identifiable as you. Think of it as your brand's "personality" expressed through design.
           </p>
         </div>
       </div>

@@ -11,14 +11,20 @@ const AboutHero = () => {
     },
     {
       name: "Betsy Pruitt",
-      role: "Co-Founder & COO",
+      role: "Marketing Coordinator",
       image: "/betsy.jpg",
       description: "Betsy's expertise in operations and client relations ensures smooth execution of all projects. Her background in strategic planning and team leadership has been instrumental in building Mustard Seed Marketing's reputation for excellence."
+    },
+    {
+      name: "Rachel Rother",
+      role: "Event Manager",
+      image: "/rachel.JPEG",
+      description: "As Event Manager and Team Lead, Rachel brings exceptional organizational skills and creativity to every project. Her leadership ensures flawless event execution and team coordination, delivering outstanding experiences for our clients."
     }
   ];
 
   return (
-    <section className="pt-40 pb-20 px-4 sm:px-6 lg:px-8">
+    <section className="pt-40 pb-20 px-4 sm:px-6 lg:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -30,8 +36,8 @@ const AboutHero = () => {
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
+        {/* Team Grid - Modified for 3 members */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member, index) => (
             <div key={index} className="text-center">
               <div className="relative w-4/5 aspect-[3/4] mb-6 rounded-xl overflow-hidden mx-auto">
@@ -41,7 +47,7 @@ const AboutHero = () => {
                   alt={member.name}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                   priority
                 />
                 {/* Label overlay */}
@@ -55,7 +61,7 @@ const AboutHero = () => {
                 </div>
               </div>
               {/* Description below image */}
-              <p className="text-[#28282B]/70 text-base max-w-md mx-auto leading-relaxed">
+              <p className="text-[#28282B]/70 text-base max-w-sm mx-auto leading-relaxed">
                 {member.description}
               </p>
             </div>

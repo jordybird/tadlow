@@ -15,27 +15,27 @@ const Header = dynamic(() => import('@/app/components/Header'), {
  
 });
 
-const BrandStrategy = dynamic(() => import('@/app/components/BrandPage/BrandStrategy'), {
+const SportsPartnerships = dynamic(() => import('@/app/components/SportsPage/SportsPartnerships'), {
   ssr: false,
  
 });
 
-const VisualIdentity = dynamic(() => import('@/app/components/BrandPage/VisualIdentity'), {
+const SportsVenue = dynamic(() => import('@/app/components/SportsPage/SportsVenue'), {
   ssr: false,
   
 });
 
-const BrandVoice = dynamic(() => import('@/app/components/BrandPage/BrandVoice'), {
+const Gameday = dynamic(() => import('@/app/components/SportsPage/Gameday'), {
   ssr: false,
   loading: () => <div className="p-4 animate-pulse">Loading Brand Voice...</div>,
 });
 
-const BrandGuidelines = dynamic(() => import('@/app/components/BrandPage/BrandGuidelines'), {
+const Fan = dynamic(() => import('@/app/components/SportsPage/Fan'), {
   ssr: false,
   loading: () => <div className="p-4 animate-pulse">Loading Brand Guidelines...</div>,
 });
 
-const BrandActivation = dynamic(() => import('@/app/components/BrandPage/BrandActivation'), {
+const InGame = dynamic(() => import('@/app/components/SportsPage/InGame'), {
   ssr: false,
   loading: () => <div className="p-4 animate-pulse">Loading Brand Activation...</div>,
 });
@@ -68,7 +68,7 @@ export default function BrandDevelopmentPage() {
           {/* Content Column */}
           <div className="md:col-span-7 flex flex-col justify-between">
             <p className="text-lg text-[#28282B]/80 mb-4">
-            Elevate your sports events with our comprehensive marketing solutions. From college sports to professional leagues, we create engaging experiences that connect fans with the game. Our expertise in sports marketing helps you build stronger relationships with your audience while maximizing event impact and attendance.
+            We believe that every sports event, from local high schools to professional arenas, carries the potential to create unforgettable moments and foster strong community connections. Our focus is on helping you elevate your sports events, fostering stronger fan relationships and maximizing impact through carefully curated marketing strategies. We want to create experiences that are more than just events - we strive to create lasting memories.
             </p>
 
             {/* Get Started Button */}
@@ -81,7 +81,7 @@ export default function BrandDevelopmentPage() {
             {/* Brand Identity Text */}
             <Link href="/get-started">
               <div className="flex items-center mt-4 text-lg font-semibold text-[#28282B]/80 cursor-pointer hover:text-[#34A56F] transition-colors">
-                Brand Identity starts here
+                Sports Marketing starts here
                 <ArrowRight className="ml-2" />
               </div>
             </Link>
@@ -104,11 +104,11 @@ export default function BrandDevelopmentPage() {
 
         {/* Brand Development Sections */}
         <div>
-          <BrandStrategy />
-          <VisualIdentity />
-          <BrandVoice />
-          <BrandGuidelines />
-          <BrandActivation />
+          <SportsPartnerships />
+          <SportsVenue />
+          <Gameday />
+          <Fan />
+          <InGame />
         </div>
       </div>
 

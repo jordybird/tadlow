@@ -1,8 +1,18 @@
-import React from 'react';
+// src/app/components/Footer.tsx
+"use client";
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { logRender } from '../../../utils/logger'; // Import the logger
 
 const Footer = () => {
+  logRender('Footer'); // Log render
+  const [year, setYear] = useState<number>(0); // Changed from string to number
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-gray-200 py-16">
       <div className="max-w-7xl mx-auto px-4">
@@ -13,7 +23,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link href="/corporate-marketing" className="text-md text-gray-600 hover:text-gray-900 transition-colors">
-                  Corporate Marketing
+                  Corporate & Private Events
                 </Link>
               </li>
               <li>
@@ -68,7 +78,7 @@ const Footer = () => {
               marketing@themustardeedmarketinggroup.com
             </a>
             <div className="text-sm text-gray-500">
-              © {new Date().getFullYear()} Mustard Seed Marketing LLC
+              © {year} Mustard Seed Marketing LLC
             </div>
           </div>
 

@@ -1,20 +1,53 @@
-// src/app/components/Footer.tsx
 "use client";
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { logRender } from '../../../utils/logger'; // Import the logger
+import { useRouter, usePathname } from 'next/navigation';
+import { logRender } from '../../../utils/logger';
 
 const Footer = () => {
-  logRender('Footer'); // Log render
-  const [year, setYear] = useState<number>(0); // Changed from string to number
+  logRender('Footer');
+  const [year, setYear] = useState<number>(0);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
 
+  useEffect(() => {
+    if (pathname === '/about' && window.location.hash === '#faq') {
+      const scrollToFAQ = () => {
+        const faqSection = document.getElementById('faq');
+        if (faqSection) {
+          const yOffset = -100;
+          const y = faqSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      };
+
+      const timer = setTimeout(scrollToFAQ, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
+  const handleFAQClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (pathname === '/about') {
+      const faqSection = document.getElementById('faq');
+      if (faqSection) {
+        const yOffset = -100;
+        const y = faqSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    } else {
+      router.push('/about#faq');
+    }
+  };
+
   return (
-    <footer className="bg-gray-200 py-16">
+    <footer className="bg-gray-200 pt-16 pb-24"> {/* Increased bottom padding from py-16 to pt-16 pb-24 */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {/* Services Column */}
@@ -54,6 +87,15 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <a 
+                  href="/about#faq"
+                  onClick={handleFAQClick}
+                  className="text-md text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                >
+                  FAQ
+                </a>
+              </li>
+              <li>
                 <Link href="/newsletter" className="text-md text-gray-600 hover:text-gray-900 transition-colors">
                   Newsletter
                 </Link>
@@ -75,7 +117,7 @@ const Footer = () => {
               href="mailto:marketing@themustardeedmarketinggroup.com"
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
             >
-              marketing@themustardeedmarketinggroup.com
+              admin@themustardeedmarketinggroup.com
             </a>
             <div className="text-sm text-gray-500">
               © {year} Mustard Seed Marketing LLC

@@ -1,39 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const CorporateHome = () => {
-  const slideShowRef = useRef(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const images = [
-    { src: '/chick.jpg', alt: 'Corporate Event 1' },
-    { src: '/brave.jpg', alt: 'Corporate Event 2' },
-    { src: '/ladies.jpg', alt: 'Corporate Event 3' },
-    { src: '/turf.jpg', alt: 'Corporate Event 4' },
-    { src: '/redcarpet.jpg', alt: 'Corporate Event 5' },
-    { src: '/brick.jpg', alt: 'Corporate Event 6' }
-  ];
-
-  const goToSlide = () => {
-    const totalSlides = images.length;
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-  };
-
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const interval = setInterval(() => {
-      goToSlide();
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isMobile]);
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-start px-4 md:px-0">
+    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-start  md:px-0">
       {/* Desktop version with offset images - Now on the left */}
       {!isMobile && (
         <div className="relative h-[500px] hidden md:block">
@@ -65,27 +39,7 @@ const CorporateHome = () => {
         </div>
       )}
 
-      {/* Mobile version with slideshow */}
-      {isMobile && (
-        <div className="mobile-slideshow relative w-full h-[400px] md:hidden">
-          <div 
-            ref={slideShowRef}
-            className="relative w-full h-full rounded-lg overflow-hidden shadow-lg"
-          >
-            <Image 
-              key={images[currentSlide].src}
-              src={images[currentSlide].src}
-              alt={images[currentSlide].alt}
-              fill
-              sizes="100vw"
-              className="object-cover"
-              quality={90}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Content section - Now on the right */}
+      {/* Content section */}
       <div className="corporate-content w-full">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 w-full">
           <Link 
@@ -109,7 +63,7 @@ const CorporateHome = () => {
           we ensure every detail contributes to your success.
         </p>
 
-        <ul className="space-y-4 text-[#28282B]/70">
+        <ul className="space-y-4 text-[#28282B]/70 mb-8 md:mb-0">
           {[
             'Executive conferences and seminars',
             'Product launch events',
@@ -122,6 +76,22 @@ const CorporateHome = () => {
           ))}
         </ul>
       </div>
+
+      {/* Mobile version with single image - Now below text */}
+      {isMobile && (
+        <div className="relative w-full h-[400px] md:hidden">
+          <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg">
+            <Image 
+              src="/brave.jpg"
+              alt="Corporate Event"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              quality={90}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

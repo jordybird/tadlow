@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, TouchEvent } from 'react';
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
@@ -13,7 +13,7 @@ const slides = [
   },
   {
     id: 2,
-    image: '/statefarm.jpg',
+    image: '/texas.jpg',
     title: 'Elevate Your Game: Mustard Seed Sports Marketing',
     buttonText: 'Learn More',
     buttonLink: '/sports-marketing',
@@ -24,7 +24,7 @@ const slides = [
     title: 'Build your brand',
     description:
       "Brand Ambassadors who deliver. Increase brand engagement and drive sales with our proven program.",
-    buttonText: 'Start Now',
+    buttonText: 'Learn More',
     buttonLink: '/brand-development',
   },
   {
@@ -33,7 +33,8 @@ const slides = [
     images: ['/hawks.jpg', '/chick-fil-a.jpg', '/dj.JPG', '/catering.JPG'],
     title: 'Corporate events delivered by Mustard Seed',
     description: 'Transform your corporate events into unforgettable experiences.',
-    hasEmailInput: true,
+    buttonText: 'Learn More',
+    buttonLink: '/corporate-and-private-events',
   },
 ];
 
@@ -43,6 +44,10 @@ const HeroSection = () => {
   const prevSlideRef = useRef(null);
   const nextSlideRef = useRef(null);
   const isAnimatingRef = useRef(false);
+  
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const minSwipeDistance = 50;
 
   const nextSlideFunc = () => {
     if (isAnimatingRef.current) return;
@@ -55,9 +60,35 @@ const HeroSection = () => {
   };
 
   const goToSlide = (index: number) => {
+    if (isAnimatingRef.current) return;
     setCurrentSlide(index);
   };
-  
+
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (isAnimatingRef.current) return;
+
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    const isMobile = window.innerWidth <= 768;
+
+    if (!isMobile) return;
+
+    if (Math.abs(swipeDistance) >= minSwipeDistance) {
+      if (swipeDistance > 0) {
+        prevSlideFunc();
+      } else {
+        nextSlideFunc();
+      }
+    }
+  };
+
   useEffect(() => {
     const tl = gsap.timeline({
       onStart: () => {
@@ -100,23 +131,29 @@ const HeroSection = () => {
   return (
     <section className="pt-32 pb-8 bg-white px-4 md:pt-32 md:pb-16 md:px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Carousel Container */}
         <div className="relative overflow-hidden rounded-2xl bg-black">
-          <div ref={sliderRef} className="flex">
+          <div 
+            ref={sliderRef} 
+            className="flex touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
-                className="min-w-full relative h-[400px] md:h-[600px]"
+                className="min-w-full relative h-[500px] md:h-[600px]"
               >
                 <div className="absolute inset-0">
                   {slide.type === 'grid' ? (
-                    <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
+                    <div className="grid grid-cols-2 grid-rows-2 gap-1 h-full">
                       {slide.images?.map((image, i) => (
                         <div key={i} className="relative w-full h-full">
                           <img
                             src={image}
                             alt={`Event ${i + 1}`}
                             className="absolute inset-0 w-full h-full object-cover"
+                            draggable="false"
                           />
                         </div>
                       ))}
@@ -125,47 +162,48 @@ const HeroSection = () => {
                     <img
                       src={slide.image}
                       alt={slide.title}
-                      className="w-full h-full object-cover opacity-90"
+                      className="w-full h-full object-cover"
+                      draggable="false"
                     />
                   )}
                 </div>
 
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-black/60 md:bg-black/40" />
 
                 <div className="relative h-full px-6 md:px-12">
                   <div
-                    className="h-full flex flex-col justify-center slide-content"
+                    className="h-full flex flex-col justify-between md:justify-start md:pt-32 slide-content"
                     ref={index === currentSlide ? nextSlideRef : null}
                   >
-                    <h1 className="text-3xl md:text-7xl font-bold mb-4 md:mb-6 text-white max-w-3xl">
-                      {slide.title}
-                    </h1>
+                    <div className="flex-1 flex flex-col justify-center md:justify-start">
+                      <h1 className="text-4xl md:text-7xl font-bold mb-4 md:mb-6 text-white max-w-3xl">
+                        {slide.title}
+                      </h1>
 
-                    {slide.description && (
-                      <p className="text-base md:text-xl mb-4 md:mb-8 text-white/90 max-w-2xl">
-                        {slide.description}
-                      </p>
-                    )}
+                      {slide.description && (
+                        <p className="text-lg md:text-xl mb-4 md:mb-8 text-white/90 max-w-2xl">
+                          {slide.description}
+                        </p>
+                      )}
 
-                    {slide.hasEmailInput ? (
-                      <div className="flex flex-col md:flex-row gap-2 md:gap-4 max-w-xl">
-                        <input
-                          type="email"
-                          placeholder="Enter your email"
-                          className="flex-1 px-4 md:px-6 py-3 md:py-4 rounded-full text-base md:text-lg"
-                        />
-                        <button className="bg-[#34A56F] hover:bg-[#2A8B5D] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold transition-colors">
-                          Get Access
-                        </button>
+                      <div className="hidden md:block">
+                        <Link 
+                          href={slide.buttonLink}
+                          className="bg-[#34A56F] hover:bg-[#2A8B5D] text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors inline-block"
+                        >
+                          {slide.buttonText}
+                        </Link>
                       </div>
-                    ) : slide.buttonText && (
+                    </div>
+
+                    <div className="block md:hidden mb-8">
                       <Link 
-                        href={slide.buttonLink} 
-                        className="bg-[#34A56F] hover:bg-[#2A8B5D] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold transition-colors w-fit"
+                        href={slide.buttonLink}
+                        className="bg-[#34A56F] hover:bg-[#2A8B5D] text-white px-6 py-3 rounded-full text-lg font-semibold transition-colors inline-block"
                       >
                         {slide.buttonText}
                       </Link>
-                    )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -173,9 +211,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Navigation */}
         <div className="mt-6 md:mt-8 flex flex-col md:flex-row justify-between items-center px-4 md:px-0">
-          {/* Navigation Dots */}
           <div className="flex gap-2 mb-4 md:mb-0">
             {slides.map((_, index) => (
               <button
@@ -190,7 +226,6 @@ const HeroSection = () => {
             ))}
           </div>
 
-          {/* Navigation Arrows (Visible on Desktop) */}
           <div className="flex gap-4">
             <button
               onClick={prevSlideFunc}

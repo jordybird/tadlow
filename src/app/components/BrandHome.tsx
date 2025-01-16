@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const BrandHome = () => {
   return (
-    <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start px-4 md:px-0">
+    <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start  md:px-0">
       {/* Content Section - Left side */}
       <div className="brand-content order-1">
         <div className="flex items-center justify-between mb-6">

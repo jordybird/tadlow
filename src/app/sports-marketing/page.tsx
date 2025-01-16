@@ -81,7 +81,7 @@ export default function BrandDevelopmentPage() {
             {/* Brand Identity Text */}
             <Link href="/get-started">
               <div className="flex items-center mt-4 text-lg font-semibold text-[#28282B]/80 cursor-pointer hover:text-[#34A56F] transition-colors">
-                Sports Marketing starts here
+                Sports Marketing Starts Here
                 <ArrowRight className="ml-2" />
               </div>
             </Link>

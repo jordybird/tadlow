@@ -41,9 +41,9 @@ export default function AboutPage() {
     <main className="relative">
       <Header />
       <AboutHero />
-      <div ref={faqRef}>
-        <FAQ />
-      </div>
+      <div ref={faqRef} id="faq">
+  <FAQ />
+</div>
       <TapIn />
       <Footer />
       <Contact targetRef={faqRef} />

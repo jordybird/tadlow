@@ -97,7 +97,7 @@ const MainContent = () => {
 
           <Link href="/get-started">
             <div className="hero-content flex items-center mt-4 text-lg font-semibold text-[#28282B]/80 cursor-pointer hover:text-[#34A56F] transition-colors">
-              Brand Identity starts here
+              Brand Identity Starts Here
               <ArrowRight className="ml-2" />
             </div>
           </Link>

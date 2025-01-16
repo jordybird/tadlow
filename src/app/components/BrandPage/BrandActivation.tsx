@@ -9,7 +9,7 @@ export default function BrandActivation() {
   logRender('BrandActivation'); // Log render
 
   return (
-    <section className="pt-0 pb-2 md:py-24 mt-4 border-b border-gray-100">
+    <section className="pt-0 pb-2 md:py-24 mt-12 md:mt-4 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-3 sm:px-0 lg:px-0">
         <div className="grid md:grid-cols-12 gap-2 md:gap-16 items-start">
           <div className="md:col-span-5">

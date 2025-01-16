@@ -8,7 +8,7 @@ const FieldHome = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   return (
-    <div ref={componentRef} className="grid md:grid-cols-2 gap-8 md:gap-16 items-start px-4 md:px-0">
+    <div ref={componentRef} className="grid md:grid-cols-2 gap-8 md:gap-16 items-start  md:px-0">
       {/* Content Section - Always on the left */}
       <div className="field-content order-1">
         <div className="flex items-center justify-between mb-6">
